@@ -34,9 +34,9 @@ def test1(client, k=1000):
 	print "passed test1"
 
 def main():
-	client = ClientInterface(args=sys.argv[1:], debug_mode=True)
+	client = ClientInterface(args=sys.argv[1:], debug_mode=False)
 	print "Run this test on only one client"
-	print "Run it with \"python client_interface.py ***\", where *** is the command to start your process"
+	print "Run it with \"python load_test1.py ***\", where *** is the command to start your process"
 
 	test1(client, 1000)
 

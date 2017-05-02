@@ -36,7 +36,7 @@ def test1(client, k=1000):
 def main():
 	client = ClientInterface(args=sys.argv[1:], debug_mode=False)
 	print "Run this test on all three clients, the result from the last client should be 3000"
-	print "Run it with \"python client_interface.py ***\", where *** is the command to start your process"
+	print "Run it with \"python load_test2.py ***\", where *** is the command to start your process"
 
 	test1(client, 1000)
 
