@@ -19,9 +19,9 @@ def test1(client, k=1000):
 	print "When your clients are ready, press Enter to start testing"
 	sys.stdin.readline()
 	print "Testing starts!"
-	client.operation("BEGIN", expected="OK")
-	client.operation("SET {} 0".format(serv_key), expected="OK")
-	client.operation("COMMIT", expected="COMMIT OK")
+	#client.operation("BEGIN", expected="OK")
+	#client.operation("SET {} 0".format(serv_key), expected="OK")
+	#client.operation("COMMIT", expected="COMMIT OK")
 	
 	count = 0
 	while count < k:
@@ -40,6 +40,8 @@ def main():
 
 	test1(client, 1000)
 
+	print "when finished, type Enter"
+	sys.stdin.readline()
 
 if __name__ == '__main__':
 	main()
