@@ -19,9 +19,12 @@ def test1(client, k=1000):
 	print "When your clients are ready, press Enter to start testing"
 	sys.stdin.readline()
 	print "Testing starts!"
-	#client.operation("BEGIN", expected="OK")
-	#client.operation("SET {} 0".format(serv_key), expected="OK")
-	#client.operation("COMMIT", expected="COMMIT OK")
+	client.operation("BEGIN", expected="OK")
+	client.operation("SET {} 0".format(serv_key), expected="OK")
+	client.operation("COMMIT", expected="COMMIT OK")
+
+	print "when all three client is ready, type Enter"
+	sys.stdin.readline()
 	
 	count = 0
 	while count < k:
