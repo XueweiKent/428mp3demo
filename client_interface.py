@@ -50,6 +50,9 @@ class ClientInterface:
 									"\", but got :\"" + output + "\"")
 		return output
 
+	def __del__(self):
+		self.cli.kill()
+
 def main():
 	client = ClientInterface(args=sys.argv[1:], debug_mode=False)
 	print "Run it with \"python client_interface.py ***\", where *** is the command to start your process"
@@ -64,22 +67,24 @@ def main():
 	client.operation("BEGIN", expected="OK")
 	client.operation("SET A.course_name 425/428", expected="OK")
 	client.operation("GET A.course_name", expected="A.course_name = 425/428")
-	client.operation("GET A.my_score", expected="NOT FOUND")
 	client.operation("ABORT", expected="ABORT")
 	print "passed first test"
 
 	#abort should take effect
 	client.operation("BEGIN", expected="OK")
 	client.operation("GET A.course_name", expected="NOT FOUND")
+	print "passed second test"
+
+	client.operation("BEGIN", expected="OK")
 	client.operation("SET A.course_name 425/428", expected="OK")
 	client.operation("COMMIT", expected="COMMIT OK")
-	print "passed second test"
+	print "passed third test"
 
 	#commit shoud take effect
 	client.operation("BEGIN", expected="OK")
 	client.operation("GET A.course_name", expected="A.course_name = 425/428")
 	client.operation("COMMIT", expected="COMMIT OK")
-	print "passed third test"
+	print "passed fourth test"
 
 	print "good job!"	
 	# while(True):
