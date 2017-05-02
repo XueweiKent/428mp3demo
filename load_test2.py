@@ -3,10 +3,14 @@ from client_interface import ClientInterface
 
 def add(client, serv_key, inc):
 	client.operation("BEGIN", expected="OK")
+
 	ret = client.operation("GET {}".format(serv_key))
-	split = ret.split(' = ')
-	result = int(split[1])
-	client.operation("SET {} {}".format(serv_key, str(result+inc)), expected="OK")
+	value = int(ret.split(' = ')[1])
+
+	ret = client.operation("SET {} {}".format(serv_key, str(value+inc)))
+	if ret=="ABORT":
+		return False
+
 	ret = client.operation("COMMIT")
 	if ret=="COMMIT OK":
 		return True
