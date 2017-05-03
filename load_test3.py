@@ -4,7 +4,7 @@ import struct
 from client_interface import ClientInterface
 
 def test1(client, k=1000):
-	serv_keys = ['A.key1', 'A.key2', 'A.key3', 'A.key4', 'A.key5']
+	serv_keys = ['A.key1', 'B.key2', 'C.key3', 'D.key4', 'E.key5']
 	random_val = str(struct.unpack("<L", os.urandom(4))[0])
 	
 	print "test3 will try to set all the 5 keys to the same value: {}".format(random_val)
@@ -32,7 +32,7 @@ def test1(client, k=1000):
 	client.operation("COMMIT")
 
 def main():
-	client = ClientInterface(args=sys.argv[1:], debug_mode=False)
+	client = ClientInterface(args=sys.argv[1:], debug_mode=True)
 	print "Run this test on all three clients, should not deadlock, result should converge"
 	print "Run it with \"python load_test3.py ***\", where *** is the command to start your process"
 
