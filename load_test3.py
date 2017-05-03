@@ -24,6 +24,7 @@ def test1(client, k=1000):
 
 	print "now we check the value. The result from all 5 keys on the same client should be the same"
 	print "when all client finished, type ENTER, see if all clients GET the same result"
+	sys.stdin.readline()
 
 	client.operation("BEGIN", expected="OK")
 	for s_k in serv_keys:
@@ -37,6 +38,8 @@ def main():
 
 	test1(client, 1000)
 
+	print "When everything is finished, type Enter"
+	sys.stdin.readline()
 
 if __name__ == '__main__':
 	main()
