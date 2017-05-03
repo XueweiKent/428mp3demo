@@ -5,6 +5,8 @@ def add(client, serv_key, inc):
 	client.operation("BEGIN", expected="OK")
 
 	ret = client.operation("GET {}".format(serv_key))
+	if ret=="ABORT":
+		return False
 	value = int(ret.split(' = ')[1])
 
 	ret = client.operation("SET {} {}".format(serv_key, str(value+inc)))
